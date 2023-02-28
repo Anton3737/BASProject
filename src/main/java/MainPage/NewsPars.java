@@ -6,16 +6,17 @@ import com.google.gson.stream.JsonReader;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
-import static MainPage.NewsPars.SERVER_URL;
+import static MainPage.NewsPars.URL;
 
 public class NewsPars {
 
-    public static final String SERVER_URL = "https://newsdata.io/api/1/news?apikey=pub_1780495eeb2b735257337696a3435cbdad776&q=ukraine&language=uk&category=top";
+    public static final String URL = "https://newsdata.io/api/1/news?apikey=pub_1780495eeb2b735257337696a3435cbdad776&q=ukraine&language=uk&category=top";
 
 
     private String title;
@@ -191,8 +192,7 @@ class NewsParsing {
     }
 
     public static void main(String[] args) throws IOException {
-        NewsParser(SERVER_URL);
-
+        NewsParser(URL);
     }
 }
 
