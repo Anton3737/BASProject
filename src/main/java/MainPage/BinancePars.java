@@ -96,15 +96,10 @@ class BinanceParser{
         for (BinancePars BinancePrint: binancePars) {
             System.out.println(BinancePrint);
         }
-
-
     }
 
     public static void main(String[] args) throws IOException {
         BinParser("https://www.binance.com/api/v1/ticker/allBookTickers");
     }
-
-
-
 }
 

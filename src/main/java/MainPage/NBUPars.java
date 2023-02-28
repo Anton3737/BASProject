@@ -4,22 +4,26 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
+import javax.xml.stream.events.Comment;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class NBUPars {
 
-
     private int r030;
     private String txt;
-    private BigDecimal rate;
+    private double rate;
     private String cc;
     private String exchangedate;
 
-    public NBUPars(int r030, String txt, BigDecimal rate, String cc, String exchangedate) {
+    public NBUPars(int r030, String txt, double rate, String cc, String exchangedate) {
         this.r030 = r030;
         this.txt = txt;
         this.rate = rate;
@@ -43,11 +47,11 @@ public class NBUPars {
         this.txt = txt;
     }
 
-    public BigDecimal getRate() {
+    public double getRate() {
         return rate;
     }
 
-    public void setRate(BigDecimal rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 
@@ -101,6 +105,5 @@ class NBUParsing{
     public static void main(String[] args) throws IOException {
         NBUParser("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json");
     }
-
 }
 
