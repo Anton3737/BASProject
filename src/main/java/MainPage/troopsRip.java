@@ -157,6 +157,8 @@ public class troopsRip {
                 '}';
     }
 
+    // не працює
+
     public static void TroopsRopParser(String url) throws IOException  {
 
         GsonBuilder gsonBuilder = new GsonBuilder();
