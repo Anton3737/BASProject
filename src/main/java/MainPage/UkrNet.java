@@ -27,5 +27,9 @@ public class UkrNet {
         FileWriter fileWriter = new FileWriter("NewsFile.txt", StandardCharsets.UTF_8);
         fileWriter.write(localDateTime + "\n" + postName.toString().replaceAll("<a href|=|class=|rel|target|</a>|im-tl_a|nofollow|data-count|\\d+,|_blank|>|\"", ""));
         fileWriter.close();
+
     }
 }
+
+
+

@@ -1,9 +1,11 @@
 package MainPage;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -137,29 +139,29 @@ public class troopsRip {
         this.atgm_srbm_systems = atgm_srbm_systems;
     }
 
-    @Override
-    public String toString() {
-        return "troopsRip{" +
-                "personnel_units=" + personnel_units +
-                ", tanks=" + tanks +
-                ", armoured_fighting_vehicles=" + armoured_fighting_vehicles +
-                ", artillery_systems=" + artillery_systems +
-                ", mlrs=" + mlrs +
-                ", aa_warfare_systems=" + aa_warfare_systems +
-                ", planes=" + planes +
-                ", helicopters=" + helicopters +
-                ", vehicles_fuel_tanks=" + vehicles_fuel_tanks +
-                ", warships_cutters=" + warships_cutters +
-                ", cruise_missiles=" + cruise_missiles +
-                ", uav_systems=" + uav_systems +
-                ", special_military_equip=" + special_military_equip +
-                ", atgm_srbm_systems=" + atgm_srbm_systems +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "troopsRip{" +
+//                "personnel_units=" + personnel_units +
+//                ", tanks=" + tanks +
+//                ", armoured_fighting_vehicles=" + armoured_fighting_vehicles +
+//                ", artillery_systems=" + artillery_systems +
+//                ", mlrs=" + mlrs +
+//                ", aa_warfare_systems=" + aa_warfare_systems +
+//                ", planes=" + planes +
+//                ", helicopters=" + helicopters +
+//                ", vehicles_fuel_tanks=" + vehicles_fuel_tanks +
+//                ", warships_cutters=" + warships_cutters +
+//                ", cruise_missiles=" + cruise_missiles +
+//                ", uav_systems=" + uav_systems +
+//                ", special_military_equip=" + special_military_equip +
+//                ", atgm_srbm_systems=" + atgm_srbm_systems +
+//                '}';
+//    }
 
     // не працює
 
-    public static void TroopsRopParser(String url) throws IOException  {
+    public static void TroopsRopParser(String url) throws IOException {
 
         GsonBuilder gsonBuilder = new GsonBuilder();
 
@@ -169,15 +171,33 @@ public class troopsRip {
 
         JsonReader jsonReader = new JsonReader(new InputStreamReader(new URL(url).openStream()));
 
-        troopsRip[] troopsRipsPars = gson.fromJson(jsonReader,troopsRip[].class);
+        troopsRip[] troopsRipsPars = gson.fromJson(jsonReader, troopsRip[].class);
 
         for (troopsRip troops : troopsRipsPars) {
             System.out.println(troops);
         }
     }
 
+
+    public static void parsRip(String path) {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        troopsRip troopsRip = null;
+
+        try {
+            troopsRip = objectMapper.readValue(new File(path), troopsRip.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(troopsRip);
+
+}
+
+
     public static void main(String[] args) throws IOException {
 
-        TroopsRopParser("https://russianwarship.rip/api/v2/statistics?offset=50&limit=1");
+//        TroopsRopParser("https://russianwarship.rip/api/v2/statistics?offset=50&limit=1");
+        parsRip("https://russianwarship.rip/api/v2/statistics?offset=50&limit=1");
     }
 }
